@@ -86,7 +86,7 @@
 	    firefox
 	    vscode
 	    google-chrome
-
+      code-cursor
     ];
   };
 
@@ -102,20 +102,15 @@
     # Nix
 	nil # Nix LSP
 	
-    	vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    	wget
-    	htop
-    	lf
-	ghostty
-	git
-
+  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+  wget htop lf ghostty git gnumake gcc libgcc
+  
 	# OCaml
-	ocaml
-	opam
+	ocaml opam dune-release ocamlPackages.cmdliner ocamlPackages.utop ocamlPackages.ocamlbuild ocamlPackages.ocamline
 	
 	# C/C++
-	clang-tools
-	
+	clang clang-tools
+
 	# Go
 	go
 
@@ -123,12 +118,10 @@
 	jdk
 
 	# JavaScript Runtime / Compiler
-	bun
+	bun nodejs
 	
-	# OBS Studio
-	obs-studio
-	gnome-tweaks
-	fira
+	# Misc
+	obs-studio gnome-tweaks fira
   ];
 
   environment.shellAliases = {
