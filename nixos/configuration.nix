@@ -119,6 +119,9 @@
 
 	# JavaScript Runtime / Compiler
 	bun nodejs
+
+  # Python
+  python314
 	
 	# Misc
 	obs-studio gnome-tweaks fira
