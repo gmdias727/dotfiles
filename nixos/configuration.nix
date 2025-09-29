@@ -17,6 +17,10 @@
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
+  # VirtualBox (Should be Disabled) #VirtualBox
+  # virtualisation.virtualbox.host.enable = true;
+  # virtualisation.virtualbox.host.enableExtensionPack = true;
+
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -81,7 +85,11 @@
   users.users.mazierigd = {
     isNormalUser = true;
     description = "Gabriel Dias Mazieri";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      # "vboxusers" #VirtualBox
+      ];
     packages = with pkgs; [
 	    firefox
 	    vscode
@@ -121,10 +129,13 @@
 	bun nodejs
 
   # Python
-  python314
+  python314 python312Packages.pip mkdocs uv
 	
+  # Racket
+  racket
+
 	# Misc
-	obs-studio gnome-tweaks fira
+	obs-studio gnome-tweaks fira iosevka dbeaver-bin ripgrep discord emacs pavucontrol zola flameshot anydesk rustdesk bat docker
   ];
 
   environment.shellAliases = {
