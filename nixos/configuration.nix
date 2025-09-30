@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports =
@@ -20,6 +20,8 @@
   # VirtualBox (Should be Disabled) #VirtualBox
   # virtualisation.virtualbox.host.enable = true;
   # virtualisation.virtualbox.host.enableExtensionPack = true;
+
+  virtualisation.docker.enable = true;
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -86,6 +88,7 @@
     isNormalUser = true;
     description = "Gabriel Dias Mazieri";
     extraGroups = [
+      "docker"
       "networkmanager"
       "wheel"
       # "vboxusers" #VirtualBox
@@ -94,12 +97,33 @@
 	    firefox
 	    vscode
 	    google-chrome
-      code-cursor
     ];
   };
 
+  users.defaultUserShell = pkgs.zsh;
+
   # Install firefox.
   programs.firefox.enable = true;
+  
+  # Install ZSH
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    autosuggestions.enable = true;
+    syntaxHighlighting.enable = true;
+
+    shellAliases = {
+      ll = "ls -l";
+      update = "sudo nixos-rebuild switch";
+    };
+
+    ohMyZsh = {
+      enable = true;
+      plugins = [ "git" ];
+      theme = "robbyrussell";
+    };
+  };
+
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -124,23 +148,24 @@
 
 	# Java
 	jdk
-
 	# JavaScript Runtime / Compiler
 	bun nodejs
 
-  # Python
-  python314 python312Packages.pip mkdocs uv
+        # Python
+        python314 python312Packages.pip mkdocs uv
 	
-  # Racket
-  racket
+        # Racket
+        racket
 
 	# Misc
-	obs-studio gnome-tweaks fira iosevka dbeaver-bin ripgrep discord emacs pavucontrol zola flameshot anydesk rustdesk bat docker
+	obs-studio gnome-tweaks fira iosevka dbeaver-bin ripgrep discord emacs pavucontrol zola flameshot anydesk rustdesk bat docker btop
   ];
 
   environment.shellAliases = {
     google-chrome = "${pkgs.google-chrome}/bin/google-chrome-stable";
   };
+
+  environment.shells = with pkgs; [ zsh ];
 
   environment.sessionVariables = {
     BROWSER = "${pkgs.google-chrome}/bin/google-chrome-stable";
