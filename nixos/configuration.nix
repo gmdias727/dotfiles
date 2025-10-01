@@ -97,6 +97,7 @@
 	    firefox
 	    vscode
 	    google-chrome
+	    iosevka
     ];
   };
 
@@ -104,7 +105,7 @@
 
   # Install firefox.
   programs.firefox.enable = true;
-  
+
   # Install ZSH
   programs.zsh = {
     enable = true;
@@ -114,7 +115,7 @@
 
     shellAliases = {
       ll = "ls -l";
-      update = "sudo nixos-rebuild switch";
+      update = "sudo nixos-rebuild";
     };
 
     ohMyZsh = {
@@ -133,6 +134,7 @@
   environment.systemPackages = with pkgs; [
     # Nix
 	nil # Nix LSP
+	nixd
 	
   vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   wget htop lf ghostty git gnumake gcc libgcc
@@ -144,12 +146,13 @@
 	clang clang-tools
 
 	# Go
-	go
+	go gopls
 
 	# Java
 	jdk
+
 	# JavaScript Runtime / Compiler
-	bun nodejs
+	bun nodejs typescript typescript-language-server
 
         # Python
         python314 python312Packages.pip mkdocs uv

@@ -1,3 +1,13 @@
 .emacs~
 '#.gitignore#'
 nixos/#configuration.nix#
+'#main.js#'
+'#main.ts#'
+#main.js#
+#main.ts#
+\#main.js\#
+\#main.ts\#
+main.go
+main.go~
+main.ts
+main_test.go
