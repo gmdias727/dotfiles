@@ -1,0 +1,10 @@
+
+[font]
+size = 14
+
+[font.normal]
+family = "Iosevka Term"
+style = "Regular"
+
+[general]
+import = ["~/.config/alacritty/themes/themes/ashes_light.toml","/home/gmdias/.config/alacritty/themes/inferno.toml"]
